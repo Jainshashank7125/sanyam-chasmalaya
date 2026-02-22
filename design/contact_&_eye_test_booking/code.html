@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact &amp; Booking - SANYAM CHASHMALAYA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "accent": "#f97316", // Soft orange accent as requested
+                        "accent-hover": "#ea580c",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<span class="text-slate-900 dark:text-white text-lg font-bold tracking-tight uppercase">Sanyam Chashmalaya</span>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium text-primary font-semibold" href="#">Contact</a>
+</nav>
+<!-- CTA Button -->
+<div class="hidden md:flex">
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors shadow-sm ring-1 ring-primary/20">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span>Book Eye Test</span>
+</button>
+</div>
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col lg:flex-row max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12 gap-8 lg:gap-12">
+<!-- Left Column: Booking Form -->
+<div class="w-full lg:w-1/2 flex flex-col gap-8">
+<div class="space-y-4">
+<span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-blue-700/10 dark:bg-blue-900/30 dark:text-blue-200">
+                   Free Consultation
+                </span>
+<h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                    Book Your <span class="text-primary">Free Eye Test</span> Today
+                </h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-lg">
+                    Schedule a comprehensive 15-point eye exam with our certified optometrists. Precision care for your vision health.
+                </p>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
+<form class="space-y-6">
+<!-- Name Field -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold leading-6 text-slate-900 dark:text-white" for="name">Full Name</label>
+<div class="relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">person</span>
+</div>
+<input class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-transparent" id="name" name="name" placeholder="Enter your full name" type="text"/>
+</div>
+</div>
+<!-- Phone Field -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold leading-6 text-slate-900 dark:text-white" for="phone">Phone Number</label>
+<div class="relative flex rounded-lg shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary">
+<span class="flex select-none items-center pl-3 text-slate-500 sm:text-sm border-r border-slate-200 dark:border-slate-700 pr-3 bg-slate-50 dark:bg-slate-700/50 rounded-l-lg h-12">
+                                +91
+                            </span>
+<input class="block flex-1 border-0 bg-transparent py-3 pl-3 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6" id="phone" name="phone" placeholder="98765 43210" type="tel"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">smartphone</span>
+</div>
+</div>
+</div>
+<!-- Date & Time Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-sm font-semibold leading-6 text-slate-900 dark:text-white" for="date">Preferred Date</label>
+<div class="relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">calendar_today</span>
+</div>
+<input class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-transparent" id="date" name="date" type="date"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-semibold leading-6 text-slate-900 dark:text-white" for="time">Preferred Time</label>
+<div class="relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">schedule</span>
+</div>
+<select class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-transparent" id="time" name="time">
+<option>10:00 AM - 12:00 PM</option>
+<option>12:00 PM - 02:00 PM</option>
+<option>04:00 PM - 06:00 PM</option>
+<option>06:00 PM - 08:00 PM</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 text-sm font-bold text-white shadow-md hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-all transform active:scale-[0.98]" type="submit">
+                        Confirm Booking
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-slate-400 dark:text-slate-500">
+                        By booking, you agree to our Terms of Service. Your information is safe with us.
+                    </p>
+</form>
+</div>
+<!-- Trust Indicators -->
+<div class="grid grid-cols-3 gap-4 mt-2">
+<div class="flex flex-col items-center text-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary text-[28px]">verified_user</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Certified<br/>Optometrists</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary text-[28px]">ophthalmology</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Advanced<br/>Equipment</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary text-[28px]">thumb_up</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">4.9/5<br/>Rating</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Info & Map -->
+<div class="w-full lg:w-1/2 flex flex-col gap-6">
+<!-- Map Container -->
+<div class="w-full h-64 sm:h-80 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm relative bg-slate-100 dark:bg-slate-800 group">
+<!-- Using a placeholder for map as requested -->
+<div class="absolute inset-0 bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-500">
+<!-- Simulated Map Background -->
+<div class="w-full h-full bg-[url('https://maps.googleapis.com/maps/api/staticmap?center=28.6139,77.2090&amp;zoom=14&amp;size=600x400&amp;key=YOUR_API_KEY')] bg-cover bg-center grayscale opacity-50" data-alt="Google Map showing Sanyam Chashmalaya location in New Delhi" data-location="New Delhi" style=""></div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Our Location</p>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Open in Google Maps</p>
+</div>
+<button class="bg-blue-50 text-primary p-2 rounded-lg hover:bg-blue-100 transition-colors">
+<span class="material-symbols-outlined">directions</span>
+</button>
+</div>
+</div>
+<!-- Contact Information Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Address Card -->
+<div class="flex flex-col gap-4 p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg mb-2">Visit Store</h3>
+<address class="not-italic text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Shop No. 12, Sanyam Chashmalaya,<br/>
+                            Main Market Road, Civil Lines,<br/>
+                            New Delhi, India - 110054
+                        </address>
+</div>
+</div>
+<!-- Contact Details Card -->
+<div class="flex flex-col gap-4 p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg mb-2">Contact Us</h3>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="tel:+919876543210">
+<span class="material-symbols-outlined text-[18px]">phone_iphone</span>
+                                +91 98765 43210
+                            </a>
+<a class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="mailto:info@sanyamchashmalaya.com">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                                info@sanyam.com
+                            </a>
+<p class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                                10 AM - 9 PM (Daily)
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- WhatsApp CTA -->
+<div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Need Quick Help?</h3>
+<p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Chat with our support team directly on WhatsApp.</p>
+</div>
+<button class="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 shadow-sm transition-all whitespace-nowrap w-full sm:w-auto justify-center">
+<span class="material-symbols-outlined">chat</span>
+                    Chat on WhatsApp
+                </button>
+</div>
+<!-- FAQ Teaser -->
+<div class="border-t border-slate-200 dark:border-slate-700 pt-6 mt-2">
+<h4 class="font-semibold text-slate-900 dark:text-white mb-4">Common Questions</h4>
+<div class="space-y-3">
+<details class="group [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-slate-50 dark:bg-slate-700/50 p-4 text-slate-900 dark:text-white">
+<h5 class="font-medium text-sm">Do I need an appointment?</h5>
+<span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 px-4 leading-relaxed text-slate-700 dark:text-slate-300 text-sm">
+                            While walk-ins are welcome, booking an appointment ensures you don't have to wait and our optometrist is ready for you.
+                        </p>
+</details>
+<details class="group [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-slate-50 dark:bg-slate-700/50 p-4 text-slate-900 dark:text-white">
+<h5 class="font-medium text-sm">Is the eye test really free?</h5>
+<span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 px-4 leading-relaxed text-slate-700 dark:text-slate-300 text-sm">
+                            Yes, the computerized eye testing is completely complimentary when you visit our store for a consultation.
+                        </p>
+</details>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-slate-500 dark:text-slate-400">© 2023 Sanyam Chashmalaya. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="sr-only">Facebook</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="sr-only">Instagram</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.315 2zm-3.196 8.42c.711.004 1.301.526 1.41 1.226a2.65 2.65 0 01-1.109 2.583 2.65 2.65 0 01-3.093-.309 2.65 2.65 0 01-.309-3.093c.36-.612 1.018-1.004 1.725-1.027.462.001.91.139 1.296.4.033.023.064.049.094.077.027-.058.056-.113.086-.167zm3.196-6.42c-2.686 0-3.018.01-4.07.058-.988.046-1.526.216-1.884.356-.475.184-.813.431-1.17.787-.356.357-.602.695-.787 1.17-.14.358-.31.896-.356 1.884-.048 1.052-.058 1.384-.058 4.07s.01 3.018.058 4.07c.046.988.216 1.526.356 1.884.184.475.431.813.787 1.17.357.356.695.602 1.17.787.358.14.896.31 1.884.356 1.052.048 1.384.058 4.07.058s3.018-.01 4.07-.058c.988-.046 1.526-.216 1.884-.356.475-.184.813-.431 1.17-.787.356-.357.602-.695.787-1.17.14-.358.31-.896.356-1.884.048-1.052.058-1.384.058-4.07s-.01-3.018-.058-4.07c-.046-.988-.216-1.526-.356-1.884-.184-.475-.431-.813-.787-1.17-.357-.356-.695-.602-1.17-.787-.358-.14-.896-.31-1.884-.356-1.052-.048-1.384-.058-4.07-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

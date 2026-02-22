@@ -1,0 +1,324 @@
+# Sanyam Chashmalaya – Full-Stack Implementation Plan
+
+## Overview
+
+Evolve the current React + Vite frontend POC into a **complete, production-grade full-stack application** covering:
+- Product catalogue with admin CRUD
+- Online order placement with payment
+- Eye test appointment booking
+- Admin dashboard
+- Customer accounts & order history
+
+---
+
+## 🔧 Backend Decision: Supabase vs Firebase vs Custom
+
+### Comparison
+
+| Criteria | **Supabase** ⭐ | Firebase | Custom (Node.js) |
+|---|---|---|---|
+| **Database** | PostgreSQL (relational, perfect for orders) | Firestore (NoSQL, document-based) | Any (MySQL/Postgres) |
+| **Auth** | Built-in, social + email/OTP | Excellent, social + phone OTP | DIY (Passport.js / JWT) |
+| **File Storage** | Built-in, CDN-backed | Firebase Storage | S3 / Cloudinary |
+| **APIs** | Auto-generated REST + Realtime | Firestore SDK | Hand-written |
+| **Complex Queries** | ✅ Full SQL power | ❌ Limited joins | ✅ Full control |
+| **Admin SDK** | ✅ Row Level Security | ✅ Security Rules | ✅ Middleware |
+| **Pricing** | Generous free tier | Generous free tier | Hosting cost |
+| **Relational Data** | ✅ Foreign keys, joins | ❌ Manual references | ✅ |
+| **Open Source** | ✅ Can self-host | ❌ Proprietary | ✅ |
+| **Setup Time** | Fast | Fast | Slow |
+| **Payment Hooks** | Via Edge Functions | Via Cloud Functions | Via Express routes |
+
+### ✅ Recommendation: **Supabase**
+
+**Why Supabase wins for Sanyam Chashmalaya:**
+1. **PostgreSQL is perfect for e-commerce** — orders with line items, relational joins (product → category → order), complex inventory queries work natively
+2. **Auto-generated REST APIs** — no backend code needed for basic CRUD; Supabase auto-exposes your tables as REST endpoints
+3. **Row Level Security (RLS)** — admin vs. customer data isolation without writing custom auth middleware
+4. **Built-in Storage** — product image uploads with CDN delivery, automatic image resizing
+5. **Realtime** — live order status updates, appointment confirmations
+6. **Edge Functions** — serverless Deno functions for Razorpay webhooks, email notifications (Resend)
+7. **Free tier** — 500 MB DB, 5 GB storage, 2 GB bandwidth/month — more than enough to launch
+
+> [!NOTE]
+> Firebase would also work, but Supabase's relational model is a much better fit for an e-commerce dataset with orders, line items, appointments, and inventory. Custom backend gives full control but adds significant setup/maintenance overhead.
+
+---
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────┐
+│              React + Vite Frontend               │
+│   ┌───────────────────┐ ┌────────────────────┐  │
+│   │   Customer App    │ │    Admin Panel     │  │
+│   │ (/, /products,    │ │  (/admin/*)        │  │
+│   │  /cart, /orders)  │ │  Protected by RLS  │  │
+│   └─────────┬─────────┘ └──────────┬─────────┘  │
+└─────────────┼──────────────────────┼─────────────┘
+              │                      │
+┌─────────────▼──────────────────────▼─────────────┐
+│                   SUPABASE                        │
+│  ┌──────────┐ ┌────────────────┐ ┌────────────┐  │
+│  │   Auth   │ │  PostgreSQL DB │ │  Storage   │  │
+│  │ (Email,  │ │  (RLS Policies)│ │ (Product   │  │
+│  │  Google, │ │                │ │  Images)   │  │
+│  │  OTP)    │ └────────────────┘ └────────────┘  │
+│  └──────────┘ ┌────────────────┐ ┌────────────┐  │
+│               │    Realtime    │ │  Edge Fns  │  │
+│               │ (order status) │ │ (Razorpay, │  │
+│               └────────────────┘ │  Emails)   │  │
+│                                  └─────┬──────┘  │
+└────────────────────────────────────────┼──────────┘
+                                         │
+                            ┌────────────▼───────┐
+                            │ Razorpay / Resend  │
+                            │ (Payments / Email) │
+                            └────────────────────┘
+```
+
+---
+
+## Database Schema (PostgreSQL)
+
+```sql
+-- User profiles (extends Supabase auth.users)
+profiles(id UUID FK, full_name, phone, avatar_url, created_at)
+
+-- Product categories
+categories(id, name, slug, description, image_url, is_active, sort_order)
+
+-- Products
+products(id, name, slug, description, category_id FK,
+         price, mrp, stock_qty, is_active,
+         badge ENUM(new|bestseller|limited),
+         gender ENUM(men|women|kids|unisex),
+         frame_shape, frame_material, lens_width_mm,
+         bridge_size_mm, temple_length_mm, weight_g,
+         country_of_origin, created_at, updated_at)
+
+-- Product images (multiple per product)
+product_images(id, product_id FK, url, sort_order, is_primary)
+
+-- Product colour swatches
+product_colors(id, product_id FK, hex_code, label)
+
+-- Orders
+orders(id, user_id FK, status ENUM(pending|confirmed|processing|
+       dispatched|delivered|cancelled), payment_status,
+       razorpay_order_id, payment_id, subtotal, discount,
+       delivery_charge, total, shipping_name, shipping_phone,
+       shipping_address, shipping_pincode, notes, created_at)
+
+-- Order line items
+order_items(id, order_id FK, product_id FK, product_name,
+            qty, unit_price, lens_type ENUM, addons JSONB,
+            prescription_url)
+
+-- Eye test appointments
+appointments(id, name, phone, email, preferred_date,
+             preferred_time, status ENUM(pending|confirmed|
+             completed|cancelled), notes, created_at)
+
+-- Admin users
+admin_users(id UUID FK auth.users, role ENUM(superadmin|staff))
+```
+
+---
+
+## Proposed Changes (7 Phases)
+
+---
+
+### Phase 1 – Supabase Setup & Auth
+
+#### [NEW] Supabase Project + Schema Migrations
+- Create project, run SQL schema, configure RLS policies
+- Public: read products/categories; Authenticated: own orders/profile; Admin: all
+
+#### [NEW] `src/lib/supabase.js` — Supabase client
+#### [NEW] `src/services/` — API abstraction layer (products, orders, appointments, auth, admin)
+#### [NEW] `src/context/AuthContext.jsx` — Global auth state + protected route HOC
+
+#### [NEW] Auth Pages
+- `LoginPage.jsx` — Email/password + Phone OTP + Google OAuth
+- `RegisterPage.jsx` — Name, email, phone, password
+- `ProfilePage.jsx` — Edit profile, saved addresses, order history tabs
+
+---
+
+### Phase 2 – Cart, Wishlist & Persistent State
+
+#### [NEW] `src/context/CartContext.jsx`
+- Add / remove / update qty, lens config per item
+- Guest: localStorage; Logged in: sync to Supabase `user_cart` table
+- Cart icon badge in Navbar (live count)
+
+#### [NEW] `src/components/CartDrawer.jsx`
+- Slide-in from right panel
+- Line items with images, lens choice summary, remove button
+- "Go to Checkout" CTA
+
+#### [NEW] `src/context/WishlistContext.jsx`
+- localStorage + Supabase sync when logged in
+
+---
+
+### Phase 3 – Order Flow & Payment (Razorpay)
+
+#### [NEW] `src/pages/CartPage.jsx`
+- Full cart view with quantity controls
+- Promo code input (validated via Edge Function)
+- Order summary subtotal + delivery + total
+
+#### [NEW] `src/pages/CheckoutPage.jsx`
+- Shipping address form (Google Places autocomplete for pincode fill)
+- Delivery: Standard (free ≥ ₹1499, else ₹99) / Express (+₹199)
+- Razorpay integration: create order → open Payment UI → verify on backend
+
+#### [NEW] `supabase/functions/create-razorpay-order/` — Edge Function
+- Creates Razorpay order, returns `razorpay_order_id`
+
+#### [NEW] `supabase/functions/razorpay-webhook/` — Edge Function
+- Verifies HMAC signature, updates `orders.payment_status`
+
+#### [NEW] `src/pages/OrderConfirmationPage.jsx`
+- Success state, order ID, estimated delivery
+- Triggers email confirmation
+
+#### [NEW] `src/pages/OrdersPage.jsx`
+- Order history list with status timeline
+- Realtime status updates via Supabase Realtime subscription
+
+---
+
+### Phase 4 – Admin Panel (`/admin/*`)
+
+> All routes protected by `admin_users` table check via RLS
+
+#### [NEW] `src/admin/AdminLayout.jsx`
+- Collapsible sidebar: Dashboard, Products, Categories, Orders, Appointments, Settings
+- Mobile-responsive top bar
+
+#### [NEW] `src/admin/pages/DashboardPage.jsx`
+- **KPI Cards:** Revenue (today / month), Orders (pending / total), Appointments (today), Low-stock alerts
+- **Charts (Recharts):** Revenue line chart, Orders by category pie, Appointment calendar
+
+#### [NEW] `src/admin/pages/ProductsPage.jsx`
+- Searchable, sortable data table (react-table)
+- Inline `is_active` toggle, bulk activate/deactivate/delete
+- Stock level colour-coded (green/amber/red)
+
+#### [NEW] `src/admin/pages/ProductFormPage.jsx`
+**Complete product add/edit form:**
+- Name, auto-generated slug, rich text description (TipTap editor)
+- Category, badge, gender, price, MRP, stock quantity
+- Frame specs (shape, material, lens width, bridge, temple, weight, origin)
+- **Multi-image upload:** Drag & drop → Supabase Storage → CDN URLs, reorder images
+- Colour swatch builder
+- Live product card preview on the right
+
+#### [NEW] `src/admin/pages/CategoriesPage.jsx`
+- Category CRUD with image upload, drag-to-reorder
+
+#### [NEW] `src/admin/pages/OrdersPage.jsx`
+- Order table with status filter tabs (All / Pending / Processing / Dispatched)
+- Status update dropdown (confirm, dispatch, deliver)
+- Order detail drawer: line items, prescription, shipping address, payment info
+- Print/Download invoice (PDF via `react-to-print`)
+
+#### [NEW] `src/admin/pages/AppointmentsPage.jsx`
+- Calendar view (FullCalendar) + list view
+- Confirm / Complete / Cancel with notes
+- One-click WhatsApp message to customer
+
+#### [NEW] `src/admin/pages/SettingsPage.jsx`
+- Store info (name, address, phone, social links, Google Maps URL)
+- Delivery charge rules
+- Promo code management (CRUD)
+
+---
+
+### Phase 5 – Edge Functions & Notifications
+
+#### [NEW] `supabase/functions/send-email/`
+- Resend API integration
+- Templates: Order Placed, Order Dispatched, Appointment Confirmed
+
+#### [NEW] `supabase/functions/appointment-reminder/`
+- `pg_cron` scheduled job: runs daily 8 AM
+- Sends WhatsApp/SMS reminders for next-day appointments (Fast2SMS)
+
+#### [NEW] `supabase/functions/validate-promo/`
+- Validates promo code, returns discount amount
+
+---
+
+### Phase 6 – Search, SEO & Performance
+
+#### [MODIFY] CatalogPage — Replace mock data with Supabase queries
+- Full-text search with PostgreSQL `to_tsvector`
+- Server-side filtering + sorting, skeleton loading states
+
+#### [NEW] Global Search in Navbar
+- Debounced instant search (300ms), dropdown showing products + categories
+
+#### [NEW] SEO — `react-helmet-async`
+- Dynamic title, description, og:image per page
+- Structured JSON-LD for products (helps Google Shopping)
+
+#### [NEW] Performance
+- Lazy-loaded page chunks with `React.lazy + Suspense`
+- WebP image delivery via Supabase Storage transforms
+- Sitemap auto-generation
+
+#### [NEW] PWA (`vite-plugin-pwa`)
+- Service worker for offline product browsing
+- Install-to-homescreen manifest
+
+---
+
+### Phase 7 – Deployment & Analytics
+
+#### Deployment
+- **Frontend:** Vercel (auto-deploy from GitHub, custom domain + SSL)
+- **Environment vars:** Supabase URL, anon key, Razorpay keys via Vercel env
+
+#### Analytics
+- Google Analytics 4 (or privacy-first Umami) for:
+  - Product view, add-to-cart, checkout funnel, appointment bookings
+
+---
+
+## Budget Estimate
+
+| Service | Free Tier | Paid (when scaling) |
+|---|---|---|
+| Supabase | 500 MB DB, 5 GB storage | $25/mo (Pro) |
+| Vercel | 100 GB bandwidth | $20/mo |
+| Razorpay | 2% per transaction | — |
+| Resend (email) | 3,000 emails/mo free | $20/mo |
+| Fast2SMS (SMS) | Pay-as-you-go | ~₹0.25/SMS |
+| **Total at launch** | **₹0/month** | ~₹5,000/mo scaled |
+
+---
+
+## Recommended Build Order
+
+| Week | Phase | Deliverable |
+|---|---|---|
+| 1 | Phase 1 | Supabase schema, auth, API services |
+| 2 | Phase 2 | Cart, wishlist, auth pages |
+| 3 | Phase 3 | Order flow + Razorpay payments |
+| 4 | Phase 4a | Admin: Products CRUD + image upload |
+| 5 | Phase 4b | Admin: Orders + Appointments |
+| 6 | Phase 5 | Email/SMS notifications, webhooks |
+| 7 | Phase 6-7 | SEO, PWA, analytics, deployment |
+
+---
+
+> [!IMPORTANT]
+> **To start Phase 1:** Create a free Supabase account at [supabase.com](https://supabase.com), create a new project, and share the **Project URL** and **anon public key** from Project Settings → API. We will NOT need the service role key in the frontend.
+
+> [!WARNING]
+> **Razorpay for live payments** requires a registered business entity (proprietorship, LLP, or Pvt Ltd) with valid KYC. Test mode works immediately without registration.

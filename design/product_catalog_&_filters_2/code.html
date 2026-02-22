@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sanyam Chashmalaya - Product Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b91c1c", // Red brand color (approximate from logo)
+                        "primary-dark": "#991b1b",
+                        "accent-red": "#ef4444", // Replaces teal accent
+                        "accent-red-light": "#fee2e2", // Replaces teal light
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased selection:bg-primary/20 selection:text-primary">
+<div class="flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/80">
+<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-3">
+<div class="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">eyeglasses</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tight text-primary dark:text-red-500">SANYAM</h1>
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 -mt-1 tracking-widest">CHASHMALAYA</p>
+</div>
+</div>
+<div class="hidden max-w-lg flex-1 md:block px-8">
+<div class="relative group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-full border-0 bg-slate-100 py-2.5 pl-10 pr-4 text-sm text-slate-900 ring-1 ring-inset ring-transparent placeholder:text-slate-400 hover:bg-slate-200/50 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700/50 dark:focus:bg-slate-800 sm:leading-6 transition-all" placeholder="Search for aviators, round frames, brands..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden md:flex items-center gap-6 mr-4">
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors" href="#">Stores</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-2 border-l border-slate-200 pl-4 dark:border-slate-700">
+<button class="group relative rounded-full p-2 text-slate-500 hover:bg-red-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white ring-2 ring-white dark:ring-slate-900">2</span>
+</button>
+<button class="rounded-full p-2 text-slate-500 hover:bg-red-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-8 sm:px-6 lg:px-8">
+<div class="mb-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+<div class="flex gap-8 border-b border-slate-200 dark:border-slate-700 w-full md:w-auto">
+<a class="relative pb-3 text-sm font-bold text-primary" href="#">
+                        Frames
+                        <span class="absolute bottom-0 left-0 h-0.5 w-full bg-primary"></span>
+</a>
+<a class="relative pb-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" href="#">
+                        Lenses / Glasses
+                    </a>
+<a class="relative pb-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" href="#">
+                        Sunglasses
+                    </a>
+</div>
+<div class="text-sm text-slate-500 dark:text-slate-400">
+                    Showing <span class="font-semibold text-slate-900 dark:text-white">124</span> results for Men's Eyeglasses
+                </div>
+</div>
+<div class="flex flex-col lg:flex-row lg:gap-10">
+<aside class="w-full lg:w-64 flex-shrink-0 mb-8 lg:mb-0">
+<div class="sticky top-24 space-y-8">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-slate-900 dark:text-white">Filters</h3>
+<button class="text-xs font-medium text-primary hover:text-primary-dark hover:underline">Clear All</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 rounded-full bg-accent-red-light px-2.5 py-1 text-xs font-medium text-red-800 ring-1 ring-inset ring-red-600/20 dark:bg-red-900/30 dark:text-red-300">
+                                Men
+                                <button class="ml-1 text-red-600 hover:text-red-800 dark:text-red-400"><span class="material-symbols-outlined text-[14px] align-middle">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-500/10 dark:bg-slate-800 dark:text-slate-300">
+                                TR90
+                                <button class="ml-1 text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined text-[14px] align-middle">close</span></button>
+</span>
+</div>
+<div class="space-y-6 divide-y divide-slate-200 dark:divide-slate-700">
+<div class="pt-4 first:pt-0">
+<h4 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Gender</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input checked="" class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary dark:border-slate-600 dark:bg-slate-700" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-slate-200">Men</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary dark:border-slate-600 dark:bg-slate-700" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-slate-200">Women</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary dark:border-slate-600 dark:bg-slate-700" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-slate-200">Kids</span>
+</label>
+</div>
+</div>
+<div class="pt-6">
+<h4 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Shape</h4>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex flex-col items-center justify-center rounded-lg border border-slate-200 bg-white p-2 hover:border-primary hover:bg-red-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-primary">
+<span class="material-symbols-outlined text-slate-400">eyeglasses</span>
+<span class="mt-1 text-xs text-slate-600 dark:text-slate-300">Aviator</span>
+</button>
+<button class="flex flex-col items-center justify-center rounded-lg border border-primary bg-primary/5 p-2 text-primary ring-1 ring-primary dark:bg-primary/10">
+<span class="material-symbols-outlined">check_box_outline_blank</span>
+<span class="mt-1 text-xs font-medium">Rectangle</span>
+</button>
+<button class="flex flex-col items-center justify-center rounded-lg border border-slate-200 bg-white p-2 hover:border-primary hover:bg-red-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-primary">
+<span class="material-symbols-outlined text-slate-400">circle</span>
+<span class="mt-1 text-xs text-slate-600 dark:text-slate-300">Round</span>
+</button>
+<button class="flex flex-col items-center justify-center rounded-lg border border-slate-200 bg-white p-2 hover:border-primary hover:bg-red-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-primary">
+<span class="material-symbols-outlined text-slate-400">square</span>
+<span class="mt-1 text-xs text-slate-600 dark:text-slate-300">Square</span>
+</button>
+</div>
+</div>
+<div class="pt-6">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Price</h4>
+<span class="text-xs text-slate-500">₹500 - ₹5000+</span>
+</div>
+<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary dark:bg-slate-700" type="range"/>
+<div class="mt-4 flex gap-2">
+<input class="w-1/2 rounded-md border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white" placeholder="Min" type="number"/>
+<input class="w-1/2 rounded-md border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white" placeholder="Max" type="number"/>
+</div>
+</div>
+<div class="pt-6">
+<h4 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Color</h4>
+<div class="flex flex-wrap gap-2">
+<button class="h-6 w-6 rounded-full bg-black ring-2 ring-transparent ring-offset-2 hover:ring-slate-300 dark:ring-offset-slate-900"></button>
+<button class="h-6 w-6 rounded-full bg-amber-800 ring-2 ring-transparent ring-offset-2 hover:ring-slate-300 dark:ring-offset-slate-900"></button>
+<button class="h-6 w-6 rounded-full bg-slate-400 ring-2 ring-transparent ring-offset-2 hover:ring-slate-300 dark:ring-offset-slate-900"></button>
+<button class="h-6 w-6 rounded-full bg-blue-600 ring-2 ring-transparent ring-offset-2 hover:ring-slate-300 dark:ring-offset-slate-900"></button>
+<button class="h-6 w-6 rounded-full border border-slate-200 bg-transparent bg-gradient-to-tr from-yellow-100 to-pink-100 ring-2 ring-primary ring-offset-2 dark:border-slate-600 dark:from-slate-700 dark:to-slate-600 dark:ring-offset-slate-900"></button>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<section class="flex-1">
+<div class="mb-6 flex items-center justify-between rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
+<div class="hidden sm:flex gap-2">
+<button class="p-2 text-primary bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg dark:hover:bg-slate-700 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+<div class="flex items-center gap-3 ml-auto">
+<span class="text-sm text-slate-500 dark:text-slate-400">Sort by:</span>
+<select class="rounded-lg border-0 bg-slate-50 py-1.5 pl-3 pr-8 text-sm font-medium text-slate-900 ring-1 ring-inset ring-slate-200 focus:ring-2 focus:ring-primary dark:bg-slate-700 dark:text-white dark:ring-slate-600">
+<option>Featured</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+<img alt="Model wearing round eyeglasses looking forward" class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" data-alt="Modern round eyeglasses on a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCufsixQBuJCm8hs6V8R7PhOF4pGtG2rGZixYxzQ4uMC_89eS0avjS9yZNnhl4t_bgIFtgJWMoXgJ1vWQGOY4dRkl-60K1uSRGllQ4xyBK-llGWTT_E7NdGuc55rViBoZLwZRb4LdvNugxkq1L1xzeSVNIGmRaqZTgrRurrxcfhW0TxDbM7SpOWt4cmP2wj3KDqsUszyC4G9IjZr5Vbjdf9pdYnd8-zaLnYIdU8ngtb_HPxfCKcA1sH4D5x0rHhEUMzqM222V4jZ68"/>
+<button class="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-slate-400 backdrop-blur-sm hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center rounded-md bg-accent-red/10 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 dark:bg-red-400/10 dark:text-red-400">New Arrival</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">
+<a href="#">Urban Retro Round</a>
+</h3>
+<div class="flex items-center gap-1">
+<span class="h-3 w-3 rounded-full bg-amber-900 border border-slate-200 dark:border-slate-600"></span>
+<span class="h-3 w-3 rounded-full bg-black border border-slate-200 dark:border-slate-600"></span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Titanium Frame • Unisex</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-primary">₹2,499</span>
+<span class="text-xs text-slate-400 line-through">₹3,999</span>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-200">
+                                        Quick Add
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+<img alt="Black square sunglasses on a table" class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" data-alt="Classic black square frame glasses close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0jL920IqbCIG55At4UVLP2RurQlNSUtaQgpakT9cviK9O0e7x7b8V7uNvhvfz_JiUjeX6WZrSE6LZvLjcAXTNrFHGXyNcOwIPgtGCNo8VQpT3f1NNpevGTEgawC7BrbiJAL-bs1NrrXQo8yihRsMDjQ_K7HuO1MHthe-O790e5BqwbXvC95p-tfXGFpQTD6fiL0YNfE5BHtQUsbzdMcj6kU0SBl8CkfqT3FwAEkXtywsJQbkj3ZYm5m15cBJKiHMBv64kE_m7CrU"/>
+<button class="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-slate-400 backdrop-blur-sm hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">
+<a href="#">Bold Wayfarer Black</a>
+</h3>
+<div class="flex items-center gap-1">
+<span class="h-3 w-3 rounded-full bg-black border border-slate-200 dark:border-slate-600"></span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">TR90 Material • Men</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-primary">₹1,299</span>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-200">
+                                        Quick Add
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+<img alt="Clear acetate glasses on white background" class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" data-alt="Transparent crystal acetate frame glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxBfxtLzBAwKUKuepsJ7oZI4M1fGj89DF42m0Qb-nmXQCy-buK9Q4iLu06jgZggjtsHr-z-OFsXOXPz08Oh2k5-ec0zl9k8pHaGy6awLC9LL8tN_MqCicFLdl32WREfQCxGCytDqOWyLEuqFAG-wTo5c0QnXNEUOQ0MS7K8w7GmfwGPBsSaVRyuijKHqN_Yu16fYM6v42pOYFseSDJb1HjZbXAPFDYFlt0hpgV3PoS_ckT4fAZuqOUjPoIFAAAL8W-fU7_96TJHw8"/>
+<button class="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-slate-400 backdrop-blur-sm hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center rounded-md bg-orange-100 px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/20 dark:bg-orange-400/10 dark:text-orange-400">Bestseller</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">
+<a href="#">Crystal Clear Vision</a>
+</h3>
+<div class="flex items-center gap-1">
+<span class="h-3 w-3 rounded-full bg-slate-200 border border-slate-300 dark:border-slate-600"></span>
+<span class="h-3 w-3 rounded-full bg-pink-100 border border-slate-300 dark:border-slate-600"></span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Acetate • Women</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-primary">₹3,499</span>
+<span class="text-xs text-slate-400 line-through">₹4,200</span>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-200">
+                                        Quick Add
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+<img alt="Sunglasses on wooden surface" class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" data-alt="Fashionable cat-eye sunglasses with gradient lens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGKbqhAMGflaU_jFUIDYorA4g05Ih6wpXLrQe33vtZCa0wy2h9d3ZSlVaa5r28ltZYv2m8wLhvpBY0xKTm3VOvVPnuUMfHEDktkL8y5FopW1SXk55mKVy6NgB5LpokmCdpqYvbdLvtWOHAOVx8KFpO8L7DnANZMF9tkFcE1kW9f8Km89oVtXhUC5adLE8Eb40mDzKBIoWFlNlcxf2vgnn1SdaBdaKhlDN_UGR8llVWuTJ92PKbKHf0Z3DPtHAcO_nmKMRZWZVyKcc"/>
+<button class="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-slate-400 backdrop-blur-sm hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">
+<a href="#">Cat-Eye Tortoise</a>
+</h3>
+<div class="flex items-center gap-1">
+<span class="h-3 w-3 rounded-full bg-amber-700 border border-slate-200 dark:border-slate-600"></span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Acetate • Women</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-primary">₹1,999</span>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-200">
+                                        Quick Add
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+<img alt="Minimalist metal frame glasses" class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" data-alt="Slim gold metal frame eyeglasses studio shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb6GBF-_aOW9ULi8iifaNFT-9z8oTRd-JRAGSDQ0XO-bTEtTD7tJEP333sS_8tvlZubspTriueXt-IuyCKwzTVSqbRHLc43gqr74F3YPoQ1j5RmUzNyxf8cxPVZHOSqJ7d_O8Dw75f63S9iQGVYrOIA21V2cCqw8pi7_C1yY-YZQVQndQBsGwT9Xcf79NywlD5OSpbHpi9MhRsoTc9YnY7KbbBSOXwUzGhVp-ISmSK7VmhnkKrpwAB3odne2OUQi5WX_CxVnQmXGo"/>
+<button class="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-slate-400 backdrop-blur-sm hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">
+<a href="#">Minimalist Gold</a>
+</h3>
+<div class="flex items-center gap-1">
+<span class="h-3 w-3 rounded-full bg-yellow-500 border border-slate-200 dark:border-slate-600"></span>
+<span class="h-3 w-3 rounded-full bg-slate-400 border border-slate-200 dark:border-slate-600"></span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Stainless Steel • Unisex</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-primary">₹2,899</span>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-200">
+                                        Quick Add
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+<div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+<img alt="Man wearing glasses smiling" class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" data-alt="Thick rimmed geek chic black glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcsNn0dQphQtFQyff2FiCG44MbB_VW24LwKEmknWAG2aJHWp7cPCaAFdOcTi-rtZoaGG4mL8L7LObfOj54j_7mK8qPX86t-u9jkgrA5UwJA6Si0q9xI9JNm-0V8usS9YUuQdNeRyLszntPgnE826qkhKYmv1hbBf0SOCHHBSb8bv17mJjQgisDq8uREwv3RjadE6Brl5gD2uRkgUEJATc1TXqVJhZJSYtyYTYN4nUI3MUv49ujTbnDkcVwBdv3CCsNNbR0dLLT7bA"/>
+<button class="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-slate-400 backdrop-blur-sm hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20 dark:bg-blue-400/10 dark:text-blue-400">Limited Edition</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">
+<a href="#">The Professor</a>
+</h3>
+<div class="flex items-center gap-1">
+<span class="h-3 w-3 rounded-full bg-black border border-slate-200 dark:border-slate-600"></span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Acetate • Men</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-lg font-bold text-primary">₹1,599</span>
+<span class="text-xs text-slate-400 line-through">₹2,000</span>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-200">
+                                        Quick Add
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex items-center justify-between border-t border-slate-200 pt-6 dark:border-slate-700">
+<button class="flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                            Previous
+                        </button>
+<div class="hidden md:flex items-center gap-2">
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white" href="#">1</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800" href="#">2</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800" href="#">3</a>
+<span class="text-slate-400">...</span>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800" href="#">12</a>
+</div>
+<button class="flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                            Next
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+</body></html>
