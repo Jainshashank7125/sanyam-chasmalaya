@@ -176,8 +176,8 @@ export default function ContactPage() {
                                     <Phone size={18} className="text-primary" />
                                 </div>
                                 <h4 className="font-bold text-slate-900 text-sm">Contact Us</h4>
-                                <a href="tel:+919876543210" className="text-xs text-slate-500 hover:text-primary transition-colors flex items-center gap-1.5">
-                                    <Phone size={12} /> +91 98765 43210
+                                <a href="tel:+919340016492" className="text-xs text-slate-500 hover:text-primary transition-colors flex items-center gap-1.5">
+                                    <Phone size={12} /> +91 93400 16492
                                 </a>
                                 <a href="mailto:info@sanyamchashmalaya.com" className="text-xs text-slate-500 hover:text-primary transition-colors flex items-center gap-1.5">
                                     <Mail size={12} /> info@sanyamchashmalaya.com
@@ -190,7 +190,7 @@ export default function ContactPage() {
 
                         {/* WhatsApp CTA */}
                         <a
-                            href="https://wa.me/919876543210?text=Hi%20Sanyam%20Chashmalaya!%20I%20need%20help"
+                            href="https://wa.me/919340016492?text=Hi%20Sanyam%20Chashmalaya!%20I%20need%20help"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-between rounded-xl bg-emerald-50 border border-emerald-200 p-5 hover:bg-emerald-100 transition-colors"
@@ -200,7 +200,7 @@ export default function ContactPage() {
                                 <p className="text-xs text-slate-500 mt-0.5">Chat with our support team directly on WhatsApp.</p>
                             </div>
                             <a
-                                href="https://wa.me/919876543210"
+                                href="https://wa.me/919340016492"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-600 transition-colors flex-shrink-0"

@@ -234,9 +234,18 @@ export const adminDeletePromoCode = async (id) => {
 }
 
 // ── Check admin access ─────────────────────────────────────────
-export const checkIsAdmin = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return false
-    const { data } = await supabase.from('admin_users').select('role').eq('id', user.id).single()
-    return !!data
+// NOTE: Pass userId explicitly — never call supabase.auth.* from inside
+// an onAuthStateChange handler (causes an internal auth-lock deadlock).
+export const checkIsAdmin = async (userId) => {
+    if (!userId) return false
+    try {
+        const { data: adminRow } = await supabase
+            .from('admin_users')
+            .select('role')
+            .eq('id', userId)
+            .maybeSingle()       // returns null (not error) when no row found
+        return !!adminRow
+    } catch {
+        return false
+    }
 }
